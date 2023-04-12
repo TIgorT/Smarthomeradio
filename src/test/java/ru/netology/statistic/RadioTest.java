@@ -4,292 +4,114 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class RadioTest {
-
     Radio stations = new Radio();
 
     @Test
-
-    public void numberOfRadioStationsTestFirst() {
-        Radio stations = new Radio(10);
-
-        Assertions.assertEquals(10, stations.getNumberOfRadioStations());
-    }
-
-    @Test
-
-    public void numberOfRadioStationsTestSecond() {
-        Radio stations = new Radio(10);
-
-        Assertions.assertEquals(9, stations.getMaxStations());
-    }
-
-    @Test
-    public void numberOfRadioStationsTestThird() {
-        Radio stations = new Radio(7);
-
-        Assertions.assertEquals(0, stations.getMinStations());
-    }
-
-
-    @Test
-    public void numberOfRadioStationsTestFourth() {
-        Radio stations = new Radio(35);
-        Assertions.assertEquals(35, stations.getNumberOfRadioStations());
-        Assertions.assertEquals(34, stations.getMaxStations());
-        Assertions.assertEquals(0, stations.getMinStations());
-
-    }
-
-    @Test
-    public void numberOfRadioStationsTestFifth() {
-        Radio stations = new Radio(34);
-        stations.setPlayingRadioStations(32);
-        stations.next();
-        Assertions.assertEquals(33, stations.getPlayingRadioStations());
-    }
-
-    @Test
-    public void numberOfRadioStationsTestSixth() {
-        Radio stations = new Radio(34);
-        stations.setPlayingRadioStations(3);
-        stations.prev();
-        Assertions.assertEquals(2, stations.getPlayingRadioStations());
-    }
-
-    //Тесты предыдущего домашнего задания
-    @Test
-
-    public void showTheSelectedRadioStationTestFirst() {
-
-        stations.setPlayingRadioStations(0);
-
-        int expected = 0;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-
-    public void showTheSelectedRadioStationTestSecond() {
+    public void checkingTheWorkOfLombokTestTheFirst() {
 
         stations.setPlayingRadioStations(7);
-
-        int expected = 7;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(9, stations.getMaxStations());
+        Assertions.assertEquals(0, stations.getMinStations());
+        Assertions.assertEquals(7, stations.getPlayingRadioStations());
     }
 
     @Test
-
-    public void showTheSelectedRadioStationTestThird() {
-
-        stations.setPlayingRadioStations(9);
-
-        int expected = 9;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
+    public void checkingTheWorkOfLombokTestTheSecond() {
+        Radio stations = new Radio(34);
+        stations.setPlayingRadioStations(25);
+        Assertions.assertEquals(34, stations.getNumberOfRadioStations());
+        Assertions.assertEquals(33, stations.getMaxStations());
+        Assertions.assertEquals(0, stations.getMinStations());
+        Assertions.assertEquals(25, stations.getPlayingRadioStations());
     }
 
     @Test
-
-    public void showTheSelectedRadioStationTestFourth() {
-
-        stations.setPlayingRadioStations(10);
-
-        int expected = 0;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
+    public void checkingTheWorkOfLombokTestTheThird() {
+        stations.setPlayingRadioStations(13);
+        Assertions.assertEquals(0, stations.getPlayingRadioStations());
     }
 
     @Test
-
-    public void showTheSelectedRadioStationTestFifth() {
-
+    public void checkingTheWorkOfLombokTestTheFourth() {
         stations.setPlayingRadioStations(-1);
-
-        int expected = 0;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(0, stations.getPlayingRadioStations());
     }
 
     @Test
-
-    public void bannedRadioStationTestSixth() {
-        Radio stations = new Radio();
-        stations.setPlayingRadioStations(0);
+    public void checkingTheWorkOfLombokTestTheFifth() {
+        stations.setPlayingRadioStations(7);
         stations.next();
-        int expected = 1;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(8, stations.getPlayingRadioStations());
     }
 
     @Test
-
-    public void bannedRadioStationTestSeventh() {
-
-        stations.setPlayingRadioStations(6);
-        stations.next();
-        int expected = 7;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-
-    public void bannedRadioStationTestEighth() {
-
+    public void checkingTheWorkOfLombokTestTheSixth() {
         stations.setPlayingRadioStations(9);
         stations.next();
-        int expected = 0;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(0, stations.getPlayingRadioStations());
+
     }
 
+    @Test
+    public void checkingTheWorkOfLombokTestTheSeventh() {
+        stations.setPlayingRadioStations(4);
+        stations.prev();
+        Assertions.assertEquals(3, stations.getPlayingRadioStations());
+    }
 
     @Test
-    public void prohibitedRadioStationBelowTheMinimumTestNinth() {
-        Radio stations = new Radio();
+    public void checkingTheWorkOfLombokTestTheEighth() {
         stations.setPlayingRadioStations(0);
         stations.prev();
-        int expected = 9;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(9, stations.getPlayingRadioStations());
     }
 
     @Test
-    public void prohibitedRadioStationBelowTheMinimumTestTen() {
-
-        stations.setPlayingRadioStations(6);
-        stations.prev();
-        int expected = 5;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
+    public void checkingTheWorkOfLombokTestTheNinth() {
+        stations.setSelectedSoundVolume(25);
+        Assertions.assertEquals(100, stations.getMaxSoundVolume());
+        Assertions.assertEquals(0, stations.getMinSoundVolume());
+        Assertions.assertEquals(25, stations.getSelectedSoundVolume());
     }
 
     @Test
-    public void prohibitedRadioStationBelowTheMinimumTestEleven() {
-
-        stations.setPlayingRadioStations(9);
-        stations.prev();
-        int expected = 8;
-        int actual = stations.getPlayingRadioStations();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void showTheCurrentSoundTestTwelve() {
-
-        stations.setSelectedSoundVolume(0);
-        int expected = 0;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void showTheCurrentSoundTestThirteenth() {
-
-        stations.setSelectedSoundVolume(56);
-        int expected = 56;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void showTheCurrentSoundTestFourteenth() {
-
-        stations.setSelectedSoundVolume(100);
-        int expected = 100;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void showTheCurrentSoundTestFifteenth() {
-
+    public void checkingTheWorkOfLombokTestTheTen() {
         stations.setSelectedSoundVolume(101);
-        int expected = 0;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
-
+        Assertions.assertEquals(0, stations.getSelectedSoundVolume());
     }
 
     @Test
-    public void showTheCurrentSoundTestSixteen() {
-
+    public void checkingTheWorkOfLombokTestTheEleven() {
         stations.setSelectedSoundVolume(-1);
-        int expected = 0;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
-
+        Assertions.assertEquals(0, stations.getSelectedSoundVolume());
     }
 
     @Test
-    public void checkingTheVolumeTestSeventeenth() {
-
-        stations.setSelectedSoundVolume(0);
+    public void checkingTheWorkOfLombokTestTheTwelve() {
+        stations.setSelectedSoundVolume(35);
         stations.increaseTheVolume();
-
-        int expected = 1;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertEquals(36, stations.getSelectedSoundVolume());
     }
 
     @Test
-    public void checkingTheVolumeTestEighteenth() {
-
-        stations.setSelectedSoundVolume(76);
-        stations.increaseTheVolume();
-
-        int expected = 77;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void checkingTheVolumeTestNineteenth() {
-
+    public void checkingTheWorkOfLombokTestTheThirteenth() {
         stations.setSelectedSoundVolume(100);
         stations.increaseTheVolume();
+        Assertions.assertEquals(100, stations.getSelectedSoundVolume());
 
-        int expected = 100;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    public void checkingTheVolumeReductionTestTwentieth() {
-
-        stations.setSelectedSoundVolume(100);
+    public void checkingTheWorkOfLombokTestTheFourteenth() {
+        stations.setSelectedSoundVolume(24);
         stations.volumeReduction();
-        int expected = 99;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
-
+        Assertions.assertEquals(23, stations.getSelectedSoundVolume());
     }
 
     @Test
-    public void checkingTheVolumeReductionTestTwentyFirst() {
-
-        stations.setSelectedSoundVolume(48);
-        stations.volumeReduction();
-        int expected = 47;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void checkingTheVolumeReductionTestTwentySecond() {
-
+    public void checkingTheWorkOfLombokTestTheFifteenth() {
         stations.setSelectedSoundVolume(0);
         stations.volumeReduction();
-        int expected = 0;
-        int actual = stations.getSelectedSoundVolume();
-        Assertions.assertEquals(expected, actual);
-
+        Assertions.assertEquals(0, stations.getSelectedSoundVolume());
     }
-
 }
