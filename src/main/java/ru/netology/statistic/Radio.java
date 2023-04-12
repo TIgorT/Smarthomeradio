@@ -1,26 +1,37 @@
 package ru.netology.statistic;
 
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Radio {
-    private int playingRadioStations;
+    private int numberOfRadioStations = 10;
     private int maxStations = 9;
     private int minStations = 0;
-    private int selectedSoundVolume;
+    private int playingRadioStations = minStations;
     private int maxSoundVolume = 100;
     private int minSoundVolume = 0;
+    private int selectedSoundVolume;
 
 
-    public int getPlayingRadioStations() {
-        return playingRadioStations;
+    public Radio(int numberOfRadioStations) {
+        this.numberOfRadioStations = numberOfRadioStations;
+        maxStations = numberOfRadioStations - 1;
+
     }
 
-    public void setPlayingRadioStations(int newPlayingRadioStations) {
-        if (newPlayingRadioStations > maxStations) {
+    public void setPlayingRadioStations(int playingRadioStations) {
+        if (playingRadioStations > maxStations) {
             return;
         }
-        if (newPlayingRadioStations < minStations) {
+        if (playingRadioStations < minStations) {
             return;
         }
-        playingRadioStations = newPlayingRadioStations;
+        this.playingRadioStations = playingRadioStations;
     }
 
     public int next() {
@@ -41,18 +52,14 @@ public class Radio {
         return playingRadioStations;
     }
 
-    public int getSelectedSoundVolume() {
-        return selectedSoundVolume;
-    }
-
-    public void setSelectedSoundVolume(int newSelectedSoundVolume) {
-        if (newSelectedSoundVolume > maxSoundVolume) {
+    public void setSelectedSoundVolume(int selectedSoundVolume) {
+        if (selectedSoundVolume > maxSoundVolume) {
             return;
         }
-        if (newSelectedSoundVolume < minSoundVolume) {
+        if (selectedSoundVolume < minSoundVolume) {
             return;
         }
-        selectedSoundVolume = newSelectedSoundVolume;
+        this.selectedSoundVolume = selectedSoundVolume;
     }
 
     public int increaseTheVolume() {
@@ -68,6 +75,5 @@ public class Radio {
         }
         return selectedSoundVolume;
     }
-
 }
 
